@@ -1,0 +1,47 @@
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+  profiles:
+    active: ${SCOPE:local}
+
+aws:
+  credentials:
+    access-key: ${AWS_ACCESS_KEY}
+    secret-key: ${AWS_SECRET_KEY}
+  region: ${AWS_REGION}
+  s3:
+    files-bucket: ${AWS_S3_FILES_BUCKET}
+
+logging:
+  pattern:
+    file: '%d %p %c{1.} [%t] %m%n'
+    console: '%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p %logger{0} [request_id:%X{requestId}] - %m%n'
+
+jwt:
+  secret-key: ${JWT_SECRET_KEY}
+
+session:
+  known-origins: ${KNOWN_ORIGINS:}
+  allow-all-origins: ${ALLOW_ALL_ORIGINS:true}
+
+email:
+  username: ${EMAIL_USERNAME}
+  password: ${EMAIL_PASSWORD}
+  internal:
+    to: ${INTERNAL_EMAIL_TO:email@host.com}
+
+web:
+  cors:
+    allowed-origin-patterns: ${ALLOWED_ORIGINS_PATTERNS:*}
+
+server:
+  port: 5000
